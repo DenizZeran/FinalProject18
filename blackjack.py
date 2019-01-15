@@ -1,4 +1,5 @@
 import random
+#import pygame
 class Card:
     def __init__(self,rank, suit):
         self.rank = rank
@@ -12,20 +13,28 @@ class Card:
     def __str__(self):
         return f"{self.rank} of {self.suit}"
 
-deck = []
 
-for suit in ['spades', 'diamonds', 'hearts', 'clubs']:
-    for rank in ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king']:
+def make_deck():
+    deck = []
+    for suit in ['spades', 'diamonds', 'hearts', 'clubs']:
+        for rank in ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king']:
+            deck.append(Card(rank,suit))
+    return deck
+deck = make_deck()
 
-        deck.append(Card(rank,suit))
-
-def deal():
-    rand_card = random.choice(deck)
-    return rand_card
-
-hand = []
-hand.append(deal())
-hand.append(deal())
-for card in hand:
-    print (card)
-
+def deal(deck):
+    hand = []
+    for i in range(2):
+        random.shuffle(deck)
+        card = deck.pop()
+        hand.append(card)
+        print (card)
+    return hand
+deal(deck)
+def deckshuffle(deck):
+    while True:
+        if len(deck) == 0:
+             for suit in ['spades', 'diamonds', 'hearts', 'clubs']:
+                 for rank in ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king']:
+                     deck = []
+                     deck.append(Card(rank,suit))
