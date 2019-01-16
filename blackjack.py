@@ -30,7 +30,20 @@ def deal(deck):
         hand.append(card)
         print (card)
     return hand
-deal(deck)
+player_hand= deal(deck)
+dealer_hand= deal(deck)
+
+def total_value(hand):
+    t= 0
+    for i in range (len(hand)):
+        t += hand[i].getvalue(hand[i].rank)
+    if t <= 11 and (hand[0].getvalue()==1 or hand[1].getvalue()==1):
+        t +=10 
+    print(t)
+    return t 
+total_value(player_hand)
+
+
 def deckshuffle(deck):
     while True:
         if len(deck) == 0:
@@ -38,3 +51,8 @@ def deckshuffle(deck):
                  for rank in ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king']:
                      deck = []
                      deck.append(Card(rank,suit))
+
+def hit(hand):
+    card = deck.pop()
+    hand.append(card)
+    return hand
