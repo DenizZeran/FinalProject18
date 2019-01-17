@@ -75,7 +75,25 @@ def blackjack(dealer_hand,player_hand)
         results()
         print("You had black jack congrats you won")
 
-
+def score(dealer_hand, player_hand):
+	if total_value(player_hand) == 21:
+		print_results(dealer_hand, player_hand)
+		print ("Congratulations! You got a Blackjack!")
+	elif total_value(dealer_hand) == 21:
+		print_results(dealer_hand, player_hand)		
+		print ("Sorry, you lose. The dealer got a blackjack.")
+	elif total_value(player_hand) > 21:
+		print_results(dealer_hand, player_hand)
+		print ("Sorry. You busted. You lose.")
+	elif total_value(dealer_hand) > 21:
+		print_results(dealer_hand, player_hand)			   
+		print ("Dealer busts. You win!")
+	elif total_value(player_hand) < total(dealer_hand):
+		print_results(dealer_hand, player_hand)
+        print ("Sorry. Your score isn't higher than the dealer. You lose.")
+	elif total_value(player_hand) > total(dealer_hand):
+		print_results(dealer_hand, player_hand)			   
+		print ("Congratulations. Your score is higher than the dealer. You win")
 
 def cleardeck():
     garbage = []
@@ -92,11 +110,11 @@ def game():
         player_hand= deal(deck)
         dealer_hand= deal(deck)
         deck = make_deck()
-        again = input("Do you want to play again? (Y/N) : ").lower()
+        choice =("Do you want to [H]it, [S]tand, or [Q]uit: ").lower()
         if again == "y":
             deck = make_deck()
             player_hand = []
             dealer_hand = []
-        elif again == "n"
+        elif choice == "q" or again == "n":
             print("bye")
             break
