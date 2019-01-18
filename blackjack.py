@@ -1,4 +1,8 @@
 import random
+import os
+
+def clear():
+    os.system('cls')
 
 class Card:
     def __init__(self,rank, suit):
@@ -16,6 +20,7 @@ class Card:
 
 
 def make_deck():
+    print("make_deck")
     deck = []
     for suit in ['spades', 'diamonds', 'hearts', 'clubs']:
         for rank in ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king']:
@@ -24,6 +29,7 @@ def make_deck():
 
 
 def deal(deck):
+    print("deal")
     hand = []
     for i in range(2):
         random.shuffle(deck)
@@ -38,36 +44,42 @@ def total_value(hand):
     for i in range (len(hand)):
         t += hand[i].getvalue(hand[i].rank)
     if t <= 11 and (hand[0].getvalue(hand[0].rank)==1 or hand[1].getvalue(hand[1].rank)==1):
-        t +=10 
+        t +=10
     print(t)
-    return t 
+    return t
 
 
 
 def deckshuffle(deck):
+    print("shuffle")
     while True:
         if len(deck) == 4:
              for suit in ['spades', 'diamonds', 'hearts', 'clubs']:
                  for rank in ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king']:
                      deck = []
                      deck.append(Card(rank,suit))
+        else:
+            break
         random.shuffle(deck)
 
 def hit(hand):
+    print("hand")
     card = deck.pop()
     hand.append(card)
     return hand
 
 def results():
+    print("results")
     print("This is was your hand:")
     for card in player_hand:
         print(card)
     print("This was the dealer's hand:")
     for card in dealer_hand:
-        print(dealer_hand)
+        print(card)
     cleardeck()
-    
-def blackjack(dealer_hand,player_hand)
+
+def blackjack(dealer_hand,player_hand):
+    print("blackjack")
     if total_value(dealer_hand) == 21:
         results()
         print("The dealer had blackjack. Good game you lose")
@@ -76,26 +88,28 @@ def blackjack(dealer_hand,player_hand)
         print("You had black jack congrats you won")
 
 def score(dealer_hand, player_hand):
-	if total_value(player_hand) == 21:
-		print_results(dealer_hand, player_hand)
-		print ("Congratulations! You got a Blackjack!")
-	elif total_value(dealer_hand) == 21:
-		print_results(dealer_hand, player_hand)		
-		print ("Sorry, you lose. The dealer got a blackjack.")
-	elif total_value(player_hand) > 21:
-		print_results(dealer_hand, player_hand)
-		print ("Sorry. You busted. You lose.")
-	elif total_value(dealer_hand) > 21:
-		print_results(dealer_hand, player_hand)			   
-		print ("Dealer busts. You win!")
-	elif total_value(player_hand) < total(dealer_hand):
-		print_results(dealer_hand, player_hand)
-        print ("Sorry. Your score isn't higher than the dealer. You lose.")
-	elif total_value(player_hand) > total(dealer_hand):
-		print_results(dealer_hand, player_hand)			   
-		print ("Congratulations. Your score is higher than the dealer. You win")
+    print("score")
+    if total_value(player_hand) == 21:
+        results()
+        print("Congratulations! You got a Blackjack!")
+    elif total_value(dealer_hand) == 21:
+        results()
+        print("Sorry, you lose. The dealer got a blackjack.")
+    elif total_value(player_hand) > 21:
+        results()
+        print("Sorry. You busted. You lose.")
+    elif total_value(dealer_hand) > 21:
+        results()
+        print("Dealer busts. You win!")
+    elif total_value(dealer_hand) > total_value(player_hand):
+        results()
+        print("Sorry. Your score is lowerd than the dealers. You lose")
+    elif total_value(player_hand) > total_value(dealer_hand):
+        results()
+        print ("Congratulations. Your score is higher than the dealer. You win")
 
 def cleardeck():
+    print("clear deck")
     garbage = []
     for card in player_hand:
         garbage.append(card)
@@ -105,16 +119,25 @@ def cleardeck():
         dealer_hand.pop(dealer_hand.index(card))
 
 def game():
-    while True:
-        deckshuffle()
+    print("game")
+    choice = 0
+    global deck
+    global dealer_hand
+    global player_hand
+    breaker = True
+    while breaker:
+        deck = make_deck()
+        deckshuffle(deck)
         player_hand= deal(deck)
         dealer_hand= deal(deck)
-        deck = make_deck()
-        choice =("Do you want to [H]it, [S]tand, or [Q]uit: ").lower()
+        choice = input("Do you want to [H]it, [S]tand, or [Q]uit: ").lower()
+        score(dealer_hand,player_hand)
+        again = input("do you want to paly again [y] or [n]").lower()
         if again == "y":
             deck = make_deck()
             player_hand = []
             dealer_hand = []
         elif choice == "q" or again == "n":
             print("bye")
-            break
+            breaker = False
+game()
