@@ -35,9 +35,18 @@ def deal(deck):
         random.shuffle(deck)
         card = deck.pop()
         hand.append(card)
+        for x in [0]:
+            print(hand[x])
+    return hand
+def deal_player(deck):
+    print("deal")
+    hand = []
+    for i in range(2):
+        random.shuffle(deck)
+        card = deck.pop()
+        hand.append(card)
         print (card)
     return hand
-
 
 def total_value(hand):
     t= 0
@@ -82,31 +91,39 @@ def blackjack(dealer_hand,player_hand):
     print("blackjack")
     if total_value(dealer_hand) == 21:
         results()
+        wallet -= bet
         print("The dealer had blackjack. Good game you lose")
     elif total_value(player_hand) == 21:
         results()
         print("You had black jack congrats you won")
+        wallet += bet
 
 def score(dealer_hand, player_hand):
     print("score")
     if total_value(player_hand) == 21:
         results()
         print("Congratulations! You got a Blackjack!")
+        wallet += bet
     elif total_value(dealer_hand) == 21:
         results()
         print("Sorry, you lose. The dealer got a blackjack.")
+        wallet -= bet
     elif total_value(player_hand) > 21:
         results()
         print("Sorry. You busted. You lose.")
+        wallet -= bet
     elif total_value(dealer_hand) > 21:
         results()
         print("Dealer busts. You win!")
+        wallet += bet
     elif total_value(dealer_hand) > total_value(player_hand):
         results()
         print("Sorry. Your score is lowerd than the dealers. You lose")
+        wallet -= bet
     elif total_value(player_hand) > total_value(dealer_hand):
         results()
         print ("Congratulations. Your score is higher than the dealer. You win")
+        wallet += bet
 
 def cleardeck():
     print("clear deck")
@@ -122,21 +139,32 @@ def game():
     print("game")
     choice = 0
     global deck
+    global wallet
+    global bet
     global dealer_hand
     global player_hand
+    wallet = input("How much do you want to bring to the table:")
+    bet = input("how much would you like to bet:")
     breaker = True
     while breaker:
         deck = make_deck()
         deckshuffle(deck)
-        player_hand= deal(deck)
+        player_hand= deal_player(deck)
         dealer_hand= deal(deck)
+        blackjack(dealer_hand, player_hand)
         choice = input("Do you want to [H]it, [S]tand, or [Q]uit: ").lower()
-        score(dealer_hand,player_hand)
+        if choice == "h":
+            hit(player_hand)
+            while total_value(dealer_hand) < 17:
+                hit(dealer_hand)
+            score(dealer_hand, player_hand)
+        if choice == "s":
+            while total_value(dealer_hand) < 17:
+                hit(dealer_hand)
+            score(dealer_hand, player_hand)
         again = input("do you want to paly again [y] or [n]").lower()
         if again == "y":
-            deck = make_deck()
-            player_hand = []
-            dealer_hand = []
+           game()
         elif choice == "q" or again == "n":
             print("bye")
             breaker = False
