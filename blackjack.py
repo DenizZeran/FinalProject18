@@ -80,9 +80,12 @@ def hit(hand):
     print("hand")
     card = deck.pop()
     hand.append(card)
+    for card in hand:
+        print(card)
     return hand
 
 def results():
+    #global wallet
     print("results")
     print("This is was your hand:")
     for card in player_hand:
@@ -95,45 +98,48 @@ def results():
 
 def blackjack(dealer_hand,player_hand):
     print("blackjack")
-    global wallet 
-    global bet
+    blackjack = 1
+    #global wallet 
+    #global bet
     if total_value(dealer_hand) == 21:
-        wallet -= bet
+       # wallet -= bet
         results()
         print("The dealer had blackjack. Good game you lose")
+        blackjack = 0
     elif total_value(player_hand) == 21:
-        wallet += bet
+       # wallet += bet
         results()
         print("You had black jack congrats you won")
+        blackjack = 0
 
 
 def score(dealer_hand, player_hand):
     print("score")
-    global wallet
-    global bet
+   # global wallet
+   # global bet
     if total_value(player_hand) == 21:
-        wallet += bet
+       # wallet += bet
         results()
         print("Congratulations! You got a Blackjack!")
     elif total_value(dealer_hand) == 21:
-        wallet -= bet
+       # wallet -= bet
         results()
         print("Sorry, you lose. The dealer got a blackjack.")
     elif total_value(player_hand) > 21:
-        wallet -= bet
+       # wallet -= bet
         results()
         print("Sorry. You busted. You lose.")
     elif total_value(dealer_hand) > 21:
-        wallet += bet
+       # wallet += bet
         results()
         print("Dealer busts. You win!")
         
     elif total_value(dealer_hand) > total_value(player_hand):
-        wallet -= bet
+       # wallet -= bet
         results()
         print("Sorry. Your score is lowerd than the dealers. You lose")
     elif total_value(player_hand) > total_value(dealer_hand):
-        wallet += bet
+       # wallet += bet
         results()
         print ("Congratulations. Your score is higher than the dealer. You win")
        
@@ -153,13 +159,13 @@ def game():
     print("Welcome to blackjack. Your goal is to get your hand to get as close to 21 or to be 21. But if you go over you go bust.")
     choice = 0
     global deck
-    global wallet
-    global bet
+   # global wallet
+   # global bet
     global dealer_hand
     global player_hand
-    wallet = 0
-    wallet = int(input("How much do you want to bring to the table:"))
-    bet = int(input("how much would you like to bet:"))
+   # wallet = 0
+   # wallet = int(input("How much do you want to bring to the table:"))
+   # bet = int(input("how much would you like to bet:"))
     breaker = True
     while breaker:
         deck = make_deck()
@@ -167,20 +173,23 @@ def game():
         player_hand= deal(deck, "player")
         dealer_hand= deal(deck, "dealer")
         blackjack(dealer_hand, player_hand)
-        choice = input("Do you want to [H]it, [S]tand, or [Q]uit: ").lower()
-        if choice == "h":
-            player_hand = hit(player_hand)
+        while blackjack == 1:
+            blackjack(dealer_hand, player_hand)
+            choice = input("Do you want to [H]it, [S]tand, or [Q]uit: ").lower()
+            if choice == "h":
+                player_hand = hit(player_hand)
             while total_value(dealer_hand) < 17:
                 hit(dealer_hand)
-        if choice == "s":
-            while total_value(dealer_hand) < 17:
-                hit(dealer_hand)
+            if choice == "s":
+                while total_value(dealer_hand) < 17:
+                    hit(dealer_hand)
                 score(dealer_hand, player_hand)
-        again = input("do you want to playy again [y] or [n]").lower()
-        if again == "y":
-            cleardeck()
-            game()
-        elif choice == "q" or again == "n":
-            print("bye")
-            breaker = False
+                again = input("do you want to playy again [y] or [n]").lower()
+                if again == "y":
+                    cleardeck()
+                    game()
+                elif choice == "q" or again == "n":
+                    print("bye")
+                    breaker = False
+       
 game()
