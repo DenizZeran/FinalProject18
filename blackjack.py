@@ -56,7 +56,7 @@ def total_value(hand):
     elif hand == dealer_hand:
         for card in hand:
             if card.rank == "ace":
-                v= 10
+                v= 11
                 card.value = v
             total += card.value
     return total
@@ -78,9 +78,9 @@ def hit(hand,person):
     if person == "player":
         for card in hand:
             print(card)
-    if person == "dealer":
-        for card in hand[0:]:
-            print(card)
+    elif person == "dealer":
+        print (hand[1])
+        print (hand[2])
     return hand
 
 def results():
