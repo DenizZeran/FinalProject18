@@ -6,3 +6,5 @@ Citations:(MLA format with url at the end)
 -user3106855user3106855 19114, et al. “Printing Specific Items out of a List.” Stack Overflow, stackoverflow.com/questions/20609376/printing-specific-items-out-of-a-list?rq=1., https://stackoverflow.com/questions/20609376/printing-specific-items-out-of-a-list?rq=1
 
 Extra information:
+- The game has an anoying habit to repeat lines of text. Mostly just the text saying what value is your hand
+- Also when it is telling the results it says the value of your hand twice it is neccessary. 
