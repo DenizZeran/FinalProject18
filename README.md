@@ -15,3 +15,5 @@ Presentation: https://docs.google.com/presentation/d/1MorGr5YnJhpBJjJsZia12LL4NC
 Extra information:
 - The game has an anoying habit to repeat lines of text. Mostly just the text saying what value is your hand
 - Also when it is telling the results it says the value of your hand twice it is neccessary.
+- The total value function says the players hand value every time when used
+- the functions asks the player a number of times(equal to number of cards in your deck) what value the ace should be
