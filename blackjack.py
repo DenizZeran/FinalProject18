@@ -194,7 +194,7 @@ def game():
     global dealer_hand
     global player_hand
     breaker = True#sets up all the global variabples
-    while breaker == True:
+    while breaker == True:#first loop to keep the game going
         deck = make_deck()# Here the game sets the deck and the two hands
         deckshuffle(deck)
         print("This is your hand:")
@@ -202,7 +202,7 @@ def game():
         print("This is the dealer's hand:")
         dealer_hand= deal(deck, "dealer")
         blackjack(dealer_hand, player_hand) # checks for black jack
-        while breaker == True:
+        while breaker == True: #second loop allows the player to hit more than once
             choice = input("Do you want to [H]it, [S]tand, or [F]old: ").lower()# asks the player what they want to do hit stay or fold
             if choice == "h":#player gets a new card and if the dealer total is less than 17 it aoutmatically hits the dealer hand
                 print("This is your new hand")
@@ -219,7 +219,7 @@ def game():
                 play_again()# asks to re start the game
             elif choice == "f":# folding ends all the loops and restarts not the round but the game
                 print("bye")
-                breaker = False
+                breaker = False# both loops are set to break when breaker = false
 
 
 game() #the game
