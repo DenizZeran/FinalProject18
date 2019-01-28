@@ -4,7 +4,7 @@ Description:
 Citations:(MLA format with url at the end)
 -262588213843476. “Python Blackjack.” Gist, gist.github.com/mjhea0/5680216., https://gist.github.com/mjhea0/5680216
 -user3106855user3106855 19114, et al. “Printing Specific Items out of a List.” Stack Overflow, stackoverflow.com/questions/20609376/printing-specific-items-out-of-a-list?rq=1., https://stackoverflow.com/questions/20609376/printing-specific-items-out-of-a-list?rq=1
-
+-https://github.com/jgerstein/FinalProjectResources/blob/master/examples/misc/cards.py
 
 
 Flowchart: https://drive.google.com/file/d/1-ZVZUR277xJjTaHawXMi9QywjmRlP6q2/view?usp=sharing
@@ -14,4 +14,4 @@ Presentation: https://docs.google.com/presentation/d/1MorGr5YnJhpBJjJsZia12LL4NC
 
 Extra information:
 - The game has an anoying habit to repeat lines of text. Mostly just the text saying what value is your hand
-- Also when it is telling the results it says the value of your hand twice it is neccessary. 
+- Also when it is telling the results it says the value of your hand twice it is neccessary.
