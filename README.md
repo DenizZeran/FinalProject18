@@ -9,6 +9,8 @@ Citations:(MLA format with url at the end)
 
 Flowchart: https://drive.google.com/file/d/1-ZVZUR277xJjTaHawXMi9QywjmRlP6q2/view?usp=sharing
 
+Presentation: https://docs.google.com/presentation/d/1MorGr5YnJhpBJjJsZia12LL4NCZPQbU7O7aLMTC792o/edit?usp=sharing
+
 
 Extra information:
 - The game has an anoying habit to repeat lines of text. Mostly just the text saying what value is your hand
